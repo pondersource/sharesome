@@ -17,22 +17,23 @@ export default Route.extend({
     }
   },
 
-  model() {
-    return this.rs.shares.list().then((listing) => {
-      let filenames = Object.keys(listing);
-      let shares = A([]);
+  async model() {
+    const listing = await this.rs.shares.list();
+    const shares = await Promise.all(Object.keys(listing).map(async (filename) => {
+      const [url, thumbnailUrl] = await Promise.all([
+        this.rs.shares.getFileURL(filename),
+        this.rs.shares.getThumbnailURL(filename)
+      ]);
 
-      filenames.forEach((filename) => {
-        let item = EmberObject.create({
-          name: filename,
-          url: this.rs.shares.getFileURL(filename),
-          isDeleting: false
-        });
-        shares.pushObject(item);
+      return EmberObject.create({
+        name: filename,
+        url,
+        thumbnailUrl,
+        isDeleting: false
       });
+    }));
 
-      return shares;
-    });
+    return A(shares);
   }
 
 });

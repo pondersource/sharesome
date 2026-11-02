@@ -11,15 +11,11 @@ export default class HistoryItemComponent extends Component {
   overlayIsVisible = false;
   @alias('item.url') url;
   @alias('item.name') name;
+  @alias('item.thumbnailUrl') thumbnailUrl;
 
   @computed('url')
   get isImage() {
     return this.url.match(/(jpg|jpeg|png|gif|webp)$/i);
-  }
-
-  @computed('name')
-  get thumbnailUrl() {
-    return this.remotestorage.shares.getThumbnailURL(this.name);
   }
 
   @computed('name')
