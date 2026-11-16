@@ -26,7 +26,7 @@ export default Service.extend({
 
     // rs.js does not support public sharing URLs for Google Drive.
     remoteStorage.setApiKeys({ dropbox: storageApiKeys.dropbox });
-    configureProviderRedirects(remoteStorage);
+    configureProviderRedirects(remoteStorage, '/connect');
     remoteStorage.access.claim('shares', 'rw');
 
     remoteStorage.on('ready', () => {

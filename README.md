@@ -74,9 +74,8 @@ client IDs/app keys, never client secrets. The shared PonderSource Dropbox
 registration uses an app folder so these apps can share their remoteStorage data.
 Google Drive is not offered here because rs.js cannot create public sharing links for it.
 
-Register the exact app origin (without a trailing slash) as the OAuth callback.
-Hyperdraft uses `https://hyperdraft.pondersource.com/write/` instead. Apps with
-nested routes return to their registered callback before starting provider sign-in.
+Register `https://sharesome.pondersource.com/connect` as the OAuth callback.
+Nested routes return to this stable app route before starting provider sign-in.
 
 The PonderSource Google OAuth project is `pondersource-apps`. It currently runs
 in Testing mode with `michiel@unhosted.org` as a test user; public availability
