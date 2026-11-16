@@ -65,3 +65,21 @@ as a collaborator on [5apps Deploy](https://5apps.com/deploy/).
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+
+
+## PonderSource storage providers
+
+Public OAuth application identifiers are configured in `app/config/storage-providers.js`. These are
+client IDs/app keys, never client secrets. The shared PonderSource Dropbox
+registration uses an app folder so these apps can share their remoteStorage data.
+Google Drive is not offered here because rs.js cannot create public sharing links for it.
+
+Register the exact app origin (without a trailing slash) as the OAuth callback.
+Hyperdraft uses `https://hyperdraft.pondersource.com/write/` instead. Apps with
+nested routes return to their registered callback before starting provider sign-in.
+
+The PonderSource Google OAuth project is `pondersource-apps`. It currently runs
+in Testing mode with `michiel@unhosted.org` as a test user; public availability
+requires completing the consent branding and Google verification requirements.
+The Dropbox app is **PonderSource Apps** (app key `gaezgoax9khjilj`), with
+additional users enabled in development mode (up to 500 users).
