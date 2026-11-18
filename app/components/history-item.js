@@ -3,6 +3,7 @@ import { alias } from '@ember/object/computed';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 import { inject as service } from '@ember/service';
 import { computed, action } from '@ember/object';
+import isImageFilename from '../utils/is-image-filename';
 
 export default class HistoryItemComponent extends Component {
   tagName = 'li';
@@ -13,9 +14,9 @@ export default class HistoryItemComponent extends Component {
   @alias('item.name') name;
   @alias('item.thumbnailUrl') thumbnailUrl;
 
-  @computed('url')
+  @computed('name')
   get isImage() {
-    return this.url.match(/(jpg|jpeg|png|gif|webp)$/i);
+    return isImageFilename(this.name);
   }
 
   @computed('name')
