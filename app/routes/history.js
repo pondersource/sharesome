@@ -4,6 +4,7 @@ import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import isImageFilename from '../utils/is-image-filename';
+import mediaURL from '../utils/media-url';
 
 export default Route.extend({
 
@@ -33,7 +34,7 @@ export default Route.extend({
       return EmberObject.create({
         name: filename,
         url,
-        thumbnailUrl,
+        thumbnailUrl: mediaURL(thumbnailUrl),
         isDeleting: false
       });
     }));

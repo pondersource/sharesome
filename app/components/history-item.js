@@ -4,6 +4,7 @@ import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 import { inject as service } from '@ember/service';
 import { computed, action } from '@ember/object';
 import isImageFilename from '../utils/is-image-filename';
+import mediaURL from '../utils/media-url';
 
 export default class HistoryItemComponent extends Component {
   tagName = 'li';
@@ -54,7 +55,7 @@ export default class HistoryItemComponent extends Component {
     let dialogContent;
 
     if (this.isImage) {
-      dialogContent = "<img src='"+this.url+"' class='zoomed'>";
+      dialogContent = "<img src='"+mediaURL(this.url)+"' class='zoomed'>";
     } else {
       dialogContent = "No preview available.";
     }
