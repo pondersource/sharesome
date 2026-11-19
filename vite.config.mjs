@@ -20,6 +20,7 @@ export default defineConfig(({ mode }) => {
         injectRegister: 'inline',
         manifest: false,
         workbox: {
+          maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
           globPatterns: ['**/*.{js,css,html,png,svg,woff,ttf,eot,ico,json}'],
         },
       }),

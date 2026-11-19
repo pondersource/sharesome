@@ -2,6 +2,7 @@ import { not } from '@ember/object/computed';
 import Service from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
 import RemoteStorage from 'remotestoragejs';
+import { attachSolid } from '@pondersource/rs-apps';
 import storageApiKeys from '../config/storage-providers';
 import { configureProviderRedirects } from '../utils/provider-redirects';
 import Widget from 'remotestorage-widget';
@@ -24,8 +25,8 @@ export default Service.extend({
       modules: [Shares]
     });
 
-    // rs.js does not support public sharing URLs for Google Drive.
-    remoteStorage.setApiKeys({ dropbox: storageApiKeys.dropbox });
+    remoteStorage.setApiKeys(storageApiKeys);
+    attachSolid(remoteStorage);
     configureProviderRedirects(remoteStorage, '/connect');
     remoteStorage.access.claim('shares', 'rw');
 
