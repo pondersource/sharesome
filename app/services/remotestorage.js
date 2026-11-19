@@ -2,7 +2,6 @@ import { not } from '@ember/object/computed';
 import Service from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
 import RemoteStorage from 'remotestoragejs';
-import { attachSolid } from '@pondersource/rs-apps';
 import storageApiKeys from '../config/storage-providers';
 import { configureProviderRedirects } from '../utils/provider-redirects';
 import Widget from 'remotestorage-widget';
@@ -26,7 +25,7 @@ export default Service.extend({
     });
 
     remoteStorage.setApiKeys(storageApiKeys);
-    attachSolid(remoteStorage);
+
     configureProviderRedirects(remoteStorage, '/connect');
     remoteStorage.access.claim('shares', 'rw');
 
@@ -77,6 +76,7 @@ export default Service.extend({
     this.set('shares', remoteStorage.shares);
 
     let widget = new Widget(remoteStorage, {
+      solidProviders: { allowAnyProvider: true },
       // skipInitial: true
     });
 
