@@ -6,6 +6,7 @@ on:
   pull_request:
 permissions:
   contents: read
+  pages: read
 concurrency:
   group: pages-${{ github.ref }}
   cancel-in-progress: false
