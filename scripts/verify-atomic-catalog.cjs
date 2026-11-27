@@ -69,6 +69,8 @@ async function verify () {
     })
     const share = page.getByRole('dialog').filter({hasText: 'Share sharesome-test.txt'})
     await expect(share).toBeVisible({timeout: 30000})
+    await share.getByLabel('Full Name').fill('Sharesome Test User')
+    await share.getByRole('button', {name: 'Save and continue'}).click()
     await share.getByRole('radio', {name: 'Read', exact: true}).check()
     await expect(share.getByText('Anyone can open it without joining')).toBeVisible()
     await share.getByRole('button', {name: 'Done', exact: true}).click()
@@ -95,7 +97,7 @@ async function verify () {
   } catch (error) {
     console.error((await page.locator('body').innerText().catch(() => '')).slice(0, 3200))
     for (const frame of page.frames().slice(1)) {
-      console.error(frame.url(), (await frame.locator('body').innerText({ timeout: 3000 }).catch(() => '')).slice(0, 1000))
+      console.error(new URL(frame.url()).pathname, (await frame.locator('body').innerText({ timeout: 3000 }).catch(() => '')).slice(0, 1000))
     }
     console.error(diagnostics.slice(-35).join('\n'))
     throw error
