@@ -17,7 +17,7 @@
   "dependencies": {
     "moment": "^2.30.1",
     "remotestorage-module-shares": "^2.1.4",
-    "remotestorage-widget": "file:vendor/remotestorage-widget-1.8.2-pondersource.5-preview.10.tgz",
+    "remotestorage-widget": "file:vendor/remotestorage-widget-1.8.2-pondersource.6-preview.11.tgz",
     "remotestoragejs": "file:vendor/remotestoragejs-2.0.0-beta.10-pondersource.9-preview.9.tgz",
     "spin.js": "^4.1.1",
     "vex-js": "^4.1.0",
