@@ -28,6 +28,7 @@ jobs:
         run: |
           printf '%s\n' 'sharesome.pondersource.com' > release/CNAME
           cp release/index.html release/404.html
+          cp -R atomic release/
           touch release/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
